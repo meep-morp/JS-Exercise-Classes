@@ -152,7 +152,7 @@ class Instructor extends Lambdasian {
     return `Today we are learning about ${subject}`;
   }
   grade(student, subject){
-    `${student.name} recieves a perfect score on ${subject}`;
+    return `${student.name} recieves a perfect score on ${subject}`;
   }
 }
 
@@ -178,10 +178,17 @@ class Student extends Instructor{
     this.className = attrs.className;
     this.favSubjects = attrs.favSubjects;
   }
-  listSubjects(){
-    forEach
+    listSubjects(){
+    return `Loving ${this.favSubjects}`;
+    }
+    PRAssignment(subject){
+      return `${this.name} has submitted a PR for ${subject}`;
+    }
+    sprintChallenge(subject){
+      return `${this.name} has begun sprint challenge on ${subject}`;
+    }  
   }
-}
+
 
 /*
   TASK 6
@@ -196,8 +203,18 @@ class Student extends Instructor{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+  constructor(attrs){
+    super(attrs);
+    this.gradClassName = attrs.gradClassName;
+    this.favInstructor = attrs.favInstructor;
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 }
 
 /*
@@ -208,6 +225,8 @@ class ProjectManager {
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+
+
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
