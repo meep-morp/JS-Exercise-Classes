@@ -171,12 +171,13 @@ class Instructor extends Lambdasian {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student extends Instructor{
+class Student extends Lambdasian{
   constructor(attrs){
     super(attrs);
     this.previousBackground = attrs.previousBackground;
     this.className = attrs.className;
     this.favSubjects = attrs.favSubjects;
+    this.grade = Math.floor(Math.random() * 101);
   }
     listSubjects(){
     return `Loving ${this.favSubjects}`;
@@ -226,7 +227,46 @@ class ProjectManager extends Instructor {
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
 
+// Student.constructor.
+Instructor.prototype.grading = function(student){
+  let random = Math.floor(Math.random() * 16);
+    if(student.grade >= 100){
+      return student.grade;
+    }else if(random < 5){
+      return student.grade + random;
+    } else {
+      return student.grade - random;
+    }
+}
 
+Student.prototype.graduate = function(grading, student){
+  if(student.grade > 70){
+    return `${this.name} has graduated! `;
+  } else {
+    return instructorOne.grading();
+  }
+}
+
+const studentOne = new Student ({
+  name: "Adrian",
+  age: 19,
+  location: "USA",
+  previousBackground: "Ex-College Student",
+  className: "WEB31",
+  favSubjects: ["HTML", "CSS", "JS"],
+})
+const instructorOne = new Instructor ({
+  name: "Britt",
+  age: 30,
+  location: "Canada",
+  specialty: "Web Dev",
+  favLanguage: "CSS",
+  catchPhrase: "Welcome back WEB31!",
+})
+
+console.log(studentOne.grade);
+console.log(instructorOne.grading(studentOne));
+console.log(studentOne.graduate(instructorOne.grading, studentOne));
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
