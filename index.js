@@ -232,18 +232,19 @@ Instructor.prototype.grading = function(student){
   let random = Math.floor(Math.random() * 16);
     if(student.grade >= 100){
       return student.grade;
-    }else if(random < 5){
+    }else if(random < 10){
       return student.grade + random;
     } else {
       return student.grade - random;
     }
 }
 
-Student.prototype.graduate = function(grading, student){
+Student.prototype.graduate = function(student){
   if(student.grade > 70){
     return `${this.name} has graduated! `;
   } else {
-    return instructorOne.grading();
+    instructorOne.grading(student);
+    return "Not yet..";
   }
 }
 
@@ -266,7 +267,7 @@ const instructorOne = new Instructor ({
 
 console.log(studentOne.grade);
 console.log(instructorOne.grading(studentOne));
-console.log(studentOne.graduate(instructorOne.grading, studentOne));
+console.log(studentOne.graduate(studentOne));
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
